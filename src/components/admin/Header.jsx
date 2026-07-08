@@ -46,6 +46,8 @@ export default function Header() {
     "/admin/blogs": "Blog",
     "/admin/recipes": "Resep",
     "/admin/profile": "Profil Saya",
+    "/admin/reports": "Laporan",
+    "/admin/activity-logs": "Activity Log",
   };
 
   const currentTitle = pageTitles[location.pathname] || "Dashboard";
