@@ -54,12 +54,15 @@
 
 body {
   margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
   background-color: #1f1f1f; /* Menyamakan base background luar dengan figma */
 }
 
 /* 2. PERBAIKAN: Bersihkan rule #root bawaan template yang merusak layout */
 #root {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -85,4 +88,155 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    font-size: 16px;
+  }
+
+  .admin-layout,
+  .user-layout,
+  .auth-shell {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+  }
+
+  .admin-layout__content,
+  .user-layout__content {
+    margin-left: 0 !important;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .admin-layout__main,
+  .user-layout__main {
+    padding: 24px 20px;
+  }
+
+  .user-sidebar {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    bottom: auto !important;
+  }
+
+  .admin-header,
+  .user-header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .admin-header__inner,
+  .user-header__inner {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .admin-header__search,
+  .user-header__search {
+    order: 3;
+    flex: 1 1 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .user-header__actions {
+    gap: 16px;
+  }
+
+  .auth-page .auth-panel {
+    width: 100% !important;
+  }
+
+  .auth-page .auth-panel--form {
+    padding: 32px 24px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .auth-page .auth-card {
+    margin: 48px auto 0 !important;
+    max-width: 100% !important;
+  }
+
+  .auth-page .auth-brand {
+    font-size: clamp(2rem, 7vw, 3rem) !important;
+  }
+
+  .auth-page .auth-title {
+    font-size: clamp(2rem, 6vw, 2.6rem) !important;
+  }
+
+  .auth-page .auth-socials {
+    flex-direction: column;
+  }
+
+  .auth-page .auth-social-btn {
+    width: 100%;
+    font-size: 1rem !important;
+    padding: 14px 12px !important;
+  }
+
+  .auth-page .auth-hero {
+    width: 100% !important;
+    min-height: 320px;
+  }
+
+  .auth-page .auth-hero-quote {
+    right: 20px !important;
+    left: 20px !important;
+    width: auto !important;
+    top: 20px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-layout__main,
+  .user-layout__main {
+    padding: 18px 16px;
+  }
+
+  .admin-header,
+  .user-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .admin-header__inner,
+  .user-header__inner {
+    gap: 12px;
+  }
+
+  .admin-header__search input,
+  .user-header__search input {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .auth-page .auth-panel--form {
+    padding: 24px 16px !important;
+  }
+
+  .auth-page .auth-brand {
+    font-size: clamp(1.75rem, 9vw, 2.5rem) !important;
+  }
+
+  .auth-page .auth-title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem) !important;
+  }
+
+  .auth-page .auth-hero {
+    min-height: 220px;
+  }
+
+  .auth-page .auth-hero-quote {
+    display: none !important;
+  }
 }

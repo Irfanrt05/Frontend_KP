@@ -29,7 +29,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-[280px] h-screen bg-[#10BB89] text-white flex flex-col flex-shrink-0 shadow-xl">
+    <aside className="admin-sidebar w-[280px] h-screen bg-[#10BB89] text-white flex flex-col flex-shrink-0 shadow-xl">
       <div className="px-8 py-7 border-b border-white/10">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center">

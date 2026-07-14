@@ -44,10 +44,10 @@ export default function UserHeader() {
       : "Cari data...";
 
   return (
-    <header className="sticky top-0 z-40 px-8 py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-      <div className="max-w-[1600px] mx-auto flex items-center justify-between gap-8">
+    <header className="user-header sticky top-0 z-40 px-8 py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+      <div className="user-header__inner max-w-[1600px] mx-auto flex items-center justify-between gap-8">
         {/* Profile Greeting */}
-        <div className="hidden lg:block">
+        <div className="user-header__greeting hidden lg:block">
           <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest">
             Selamat Pagi,
           </h2>
@@ -57,7 +57,7 @@ export default function UserHeader() {
         </div>
 
         {/* Search Bar */}
-        <div className="flex-1 max-w-xl">
+        <div className="user-header__search flex-1 max-w-xl">
           <div className="relative group">
             <Search
               className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#10BB89] transition-colors"
@@ -73,7 +73,7 @@ export default function UserHeader() {
         </div>
 
         {/* Navigation & User */}
-        <div className="flex items-center gap-6">
+        <div className="user-header__actions flex items-center gap-6">
           <Link
             to="/"
             className="text-sm font-bold text-slate-400 hover:text-[#10BB89] transition-colors"

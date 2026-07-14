@@ -65,8 +65,8 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-4 z-50 px-6">
-      <div className="bg-white/80 backdrop-blur-2xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2rem] flex items-center justify-between px-6 py-3 transition-all">
+    <header className="admin-header sticky top-4 z-50 px-6">
+      <div className="admin-header__inner bg-white/80 backdrop-blur-2xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2rem] flex items-center justify-between px-6 py-3 transition-all">
         <div className="flex-shrink-0">
           <h2 className="text-lg font-black text-slate-800">{currentTitle}</h2>
           <p className="text-[9px] font-bold text-[#10BB89] uppercase tracking-widest">
@@ -74,7 +74,7 @@ export default function Header() {
           </p>
         </div>
 
-        <div className="flex-1 max-w-sm mx-6">
+        <div className="admin-header__search flex-1 max-w-sm mx-6">
           <div className="relative group">
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
               <Search
@@ -90,7 +90,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3" ref={menuRef}>
+        <div className="admin-header__actions flex items-center gap-3" ref={menuRef}>
           <button className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition text-slate-500">
             <Bell size={16} />
           </button>

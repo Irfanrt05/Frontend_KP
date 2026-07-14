@@ -65,21 +65,21 @@ const handleRegister = async () => {
 
   return (
     <div
-  className="w-full min-h-screen flex"
->
+      className="auth-page w-full min-h-screen flex"
+    >
       {/* WRAPPER UTAMA */}
       <div
-        className="flex overflow-hidden w-full"
+        className="auth-shell flex overflow-hidden w-full"
         style={{
-          Width: "100px",
-          Height: "100vh",
+          width: "100%",
+          height: "100vh",
           borderRadius: "0px",
           background: "#f5f5f5",
         }}
       >
         {/* Area Form & Logo */}
         <div
-          className="flex flex-col"
+          className="auth-panel auth-panel--form flex flex-col"
           style={{
             width: "46%",
             padding: "50px 119px",
@@ -89,7 +89,7 @@ const handleRegister = async () => {
         >
           {/* Logo PROBIT */}
           <div
-            className="flex items-center"
+            className="auth-brand-row flex items-center"
             style={{
               gap: "10px",
               marginLeft: "-50px",
@@ -106,6 +106,7 @@ const handleRegister = async () => {
               }}
             />
             <span
+              className="auth-brand"
               style={{
                 fontWeight: 800,
                 fontSize: "50px",
@@ -119,7 +120,7 @@ const handleRegister = async () => {
 
           {/* CARD FORM */}
           <div
-            className="w-full"
+            className="auth-card w-full"
             style={{
               maxWidth: "520px",
               marginTop: "60px",
@@ -128,6 +129,7 @@ const handleRegister = async () => {
           >
             {/* Header */}
             <h2
+              className="auth-title"
               style={{
                 fontWeight: 700,
                 fontSize: "32px",
@@ -141,6 +143,7 @@ const handleRegister = async () => {
               Create an account
             </h2>
             <p
+              className="auth-subtitle"
               style={{
                 fontSize: "16px",
                 color: "#475569",
@@ -153,10 +156,10 @@ const handleRegister = async () => {
             </p>
 
             {/* Social Buttons */}
-            <div className="flex" style={{ gap: "10px", marginBottom: "12px" }}>
+            <div className="auth-socials flex" style={{ gap: "10px", marginBottom: "12px" }}>
               <button
                 onClick={() => googleRegister()}
-                className="flex-1 flex items-center justify-center"
+                className="auth-social-btn auth-social-btn--google flex-1 flex items-center justify-center"
                 style={{
                   background: "rgba(255,255,255,0.75)",
                   border: "1px solid rgba(148,163,184,0.4)",
@@ -195,7 +198,7 @@ const handleRegister = async () => {
                 <span>Google</span>
               </button>
               <button
-            className="flex-1 flex items-center justify-center"
+                className="auth-social-btn auth-social-btn--apple flex-1 flex items-center justify-center"
             style={{
               background: "rgba(255,255,255,0.75)",
               border: "1px solid rgba(148,163,184,0.4)",
@@ -232,7 +235,7 @@ const handleRegister = async () => {
 
             {/* Divider */}
             <div
-              className="flex items-center"
+              className="auth-divider flex items-center"
               style={{ gap: "10px", marginBottom: "12px" }}
             >
               <div
@@ -263,7 +266,7 @@ const handleRegister = async () => {
             </div>
 
             {/* Username */}
-            <div style={{ marginBottom: "10px" }}>
+            <div className="auth-field" style={{ marginBottom: "10px" }}>
               <label
                 style={{
                   display: "block",
@@ -316,7 +319,7 @@ const handleRegister = async () => {
             </div>
 
             {/* Email */}
-            <div style={{ marginBottom: "10px" }}>
+            <div className="auth-field" style={{ marginBottom: "10px" }}>
               <label
                 style={{
                   display: "block",
@@ -367,7 +370,7 @@ const handleRegister = async () => {
             </div>
 
             {/* Password */}
-            <div style={{ marginBottom: "10px" }}>
+            <div className="auth-field" style={{ marginBottom: "10px" }}>
               <label
                 style={{
                   display: "block",
@@ -437,7 +440,7 @@ const handleRegister = async () => {
             </div>
 
             {/* Confirm Password */}
-            <div style={{ marginBottom: "12px" }}>
+            <div className="auth-field" style={{ marginBottom: "12px" }}>
               <label
                 style={{
                   display: "block",
@@ -508,7 +511,7 @@ const handleRegister = async () => {
 
             {/* Terms */}
             <div
-              className="flex items-start"
+              className="auth-terms flex items-start"
               style={{ gap: "8px", marginBottom: "14px" }}
             >
               <input
@@ -555,6 +558,7 @@ const handleRegister = async () => {
             {/* Register Button */}
             <button
               onClick={handleRegister}
+              className="auth-submit"
               style={{
                 width: "100%",
                 background: "linear-gradient(135deg,#22c55e,#16a34a)",
@@ -584,6 +588,7 @@ const handleRegister = async () => {
 
             {/* Footer */}
             <p
+              className="auth-footer"
               style={{
                 textAlign: "center",
                 fontSize: "15px",
@@ -608,7 +613,7 @@ const handleRegister = async () => {
         </div>
 
         {/* Hero Image */}
-        <div className="relative overflow-hidden" style={{ width: "54%" }}>
+        <div className="auth-hero relative overflow-hidden" style={{ width: "54%" }}>
           <img
             src="/ui_login.png"
             alt="Healthy lifestyle"
@@ -626,6 +631,7 @@ const handleRegister = async () => {
 
           {/* Quote Card */}
           <div
+            className="auth-hero-quote"
             style={{
               position: "absolute",
               top: "28px",

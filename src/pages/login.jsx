@@ -63,7 +63,7 @@ export default function Login() {
 
   return (
     <div
-      className="w-full min-h-screen flex antialiased"
+      className="auth-page w-full min-h-screen flex antialiased"
       style={{
         background: "#efefef",
         fontFamily:
@@ -72,7 +72,7 @@ export default function Login() {
     >
       {/* WRAPPER UTAMA */}
       <div
-        className="flex overflow-hidden w-full"
+        className="auth-shell flex overflow-hidden w-full"
         style={{
           width: "100%",
           height: "100vh",
@@ -82,7 +82,7 @@ export default function Login() {
       >
         {/* Area Form & Logo */}
         <div
-          justify-content: flex-start
+          className="auth-panel auth-panel--form"
           style={{
             width: "46%",
             padding: "40px 60px",
@@ -92,7 +92,7 @@ export default function Login() {
         >
           {/* Logo PROBIT */}
           <div
-            className="flex items-center"
+            className="auth-brand-row flex items-center"
             style={{ gap: "10px", paddingLeft: "4px" }}
           >
             <img
@@ -106,6 +106,7 @@ export default function Login() {
               }}
             />
             <span
+              className="auth-brand"
               style={{
                 fontWeight: 800,
                 fontSize: "50px",
@@ -119,7 +120,7 @@ export default function Login() {
 
           {/* CARD FORM */}
           <div
-            className="w-full"
+            className="auth-card w-full"
             style={{
               maxWidth: "520px",
               marginTop: "120px",
@@ -128,6 +129,7 @@ export default function Login() {
           >
             {/* Header */}
             <h2
+              className="auth-title"
               style={{
                 fontWeight: 700,
                 fontSize: "40px",
@@ -141,6 +143,7 @@ export default function Login() {
               Login account
             </h2>
             <p
+              className="auth-subtitle"
               style={{
                 fontSize: "18px",
                 color: "#475569",
@@ -153,10 +156,10 @@ export default function Login() {
             </p>
 
             {/* Social Buttons */}
-            <div className="flex" style={{ gap: "10px", marginBottom: "14px" }}>
+            <div className="auth-socials flex" style={{ gap: "10px", marginBottom: "14px" }}>
               <button
                 onClick={() => googleLogin()}
-                className="flex-1 flex items-center justify-center"
+                className="auth-social-btn auth-social-btn--google flex-1 flex items-center justify-center"
                 style={{
                   background: "rgba(255,255,255,0.75)",
                   border: "1px solid rgba(148,163,184,0.4)",
@@ -195,7 +198,7 @@ export default function Login() {
                 <span>Google</span>
               </button>
               <button
-                className="flex-1 flex items-center justify-center"
+                className="auth-social-btn auth-social-btn--apple flex-1 flex items-center justify-center"
                 style={{
                   background: "rgba(255,255,255,0.75)",
                   border: "1px solid rgba(148,163,184,0.4)",
@@ -222,7 +225,7 @@ export default function Login() {
 
             {/* Divider */}
             <div
-              className="flex items-center"
+              className="auth-divider flex items-center"
               style={{ gap: "10px", marginBottom: "14px" }}
             >
               <div
@@ -253,7 +256,7 @@ export default function Login() {
             </div>
 
             {/* Email */}
-            <div style={{ marginBottom: "10px" }}>
+            <div className="auth-field" style={{ marginBottom: "10px" }}>
               <label
                 style={{
                   display: "block",
@@ -304,7 +307,7 @@ export default function Login() {
             </div>
 
             {/* Password */}
-            <div style={{ marginBottom: "12px" }}>
+            <div className="auth-field" style={{ marginBottom: "12px" }}>
               <label
                 style={{
                   display: "block",
@@ -374,6 +377,7 @@ export default function Login() {
             </div>
             
             <div
+              className="auth-forgot"
               style={{
                 display: "flex",
                 justifyContent: "flex-end",
@@ -395,7 +399,7 @@ export default function Login() {
 
             {/* Terms */}
             <div
-              className="flex items-start"
+              className="auth-terms flex items-start"
               style={{ gap: "8px", marginBottom: "14px" }}
             >
               <input
@@ -442,6 +446,7 @@ export default function Login() {
             {/* Login Button */}
             <button
               onClick={handleLogin}
+              className="auth-submit"
               style={{
                 width: "100%",
                 background: "linear-gradient(135deg,#22c55e,#16a34a)",
@@ -471,6 +476,7 @@ export default function Login() {
 
             {/* Footer */}
             <p
+              className="auth-footer"
               style={{
                 textAlign: "center",
                 fontSize: "16px",
@@ -495,7 +501,7 @@ export default function Login() {
         </div>
 
         {/* Hero Image */}
-        <div className="relative overflow-hidden" style={{ width: "54%" }}>
+        <div className="auth-hero relative overflow-hidden" style={{ width: "54%" }}>
           <img
             src="/ui_login.png"
             alt="Healthy lifestyle"
@@ -513,6 +519,7 @@ export default function Login() {
 
           {/* Quote Card */}
           <div
+            className="auth-hero-quote"
             style={{
               position: "absolute",
               top: "28px",
