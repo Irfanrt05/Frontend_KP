@@ -12,7 +12,7 @@ import {
   X,
 } from "lucide-react";
 
-export default function UserSidebar({ collapsed, setCollapsed }) {
+export default function UserSidebar({ collapsed, setCollapsed, className = "" }) {
   const menus = [
     { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard", end: true },
     {
@@ -34,6 +34,7 @@ export default function UserSidebar({ collapsed, setCollapsed }) {
   return (
     <aside
       className={`
+        user-sidebar ${className}
         fixed left-0 top-0 bottom-0 z-50 h-screen bg-[#10BB89] text-white
         flex flex-col shadow-2xl transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
         ${collapsed ? "w-[90px]" : "w-[240px]"}
