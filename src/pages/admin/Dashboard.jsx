@@ -7,7 +7,7 @@ import {
   Utensils,
   Activity,
   Loader2,
-  RefreshCw,
+  RefreshCcw,
   ChevronRight,
   BarChart3,
   Clock,
@@ -60,19 +60,19 @@ export default function Dashboard() {
     );
 
   return (
-    <div className="p-6 bg-slate-50 min-h-screen space-y-6">
+    <div className="p-4 sm:p-6 bg-slate-50 min-h-screen space-y-4 sm:space-y-6">
       {/* Welcome Card & Help Button */}
-      <div className="bg-[#10BB89] rounded-3xl p-8 text-white shadow-xl shadow-emerald-100 flex justify-between items-center relative overflow-hidden">
+      <div className="bg-[#10BB89] rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-emerald-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative overflow-hidden">
         <div className="relative z-10">
-          <h1 className="text-3xl font-black mb-2">Halo, Admin Probit! 👋</h1>
-          <p className="text-emerald-50 max-w-md">
+          <h1 className="text-2xl sm:text-3xl font-black mb-2">Halo, Admin Probit! 👋</h1>
+          <p className="text-emerald-50 max-w-md text-sm sm:text-base">
             Kelola konten, pantau pengguna, dan analisa performa aplikasi Anda
             dari satu dashboard terpusat.
           </p>
         </div>
         <button
           onClick={() => setShowHelp(true)}
-          className="relative z-10 flex items-center gap-2 bg-white/20 hover:bg-white hover:text-[#10BB89] transition px-4 py-2 rounded-xl text-sm font-bold backdrop-blur-sm"
+          className="relative z-10 flex items-center gap-2 bg-white/20 hover:bg-white hover:text-[#10BB89] transition px-4 py-2 rounded-xl text-sm font-bold backdrop-blur-sm flex-shrink-0"
         >
           <HelpCircle size={18} /> Panduan Admin
         </button>
@@ -82,7 +82,7 @@ export default function Dashboard() {
       </div>
 
       {/* Grid Statistik */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         {[
           {
             title: "User",
@@ -130,8 +130,8 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="lg:col-span-2 bg-white rounded-2xl p-4 sm:p-6 border border-slate-100 shadow-sm">
           <h2 className="font-bold text-sm text-slate-700 mb-4 flex items-center gap-2">
             <Clock size={16} className="text-[#10BB89]" /> Aktivitas Terbaru
           </h2>

@@ -439,13 +439,13 @@ export default function LandingPage() {
                       <span className="text-[10px] font-bold text-slate-400 block mb-1">
                         {item.published_at
                           ? new Date(item.published_at).toLocaleDateString(
-                              "id-ID",
-                              {
-                                day: "numeric",
-                                month: "long",
-                                year: "numeric",
-                              },
-                            )
+                            "id-ID",
+                            {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            },
+                          )
                           : "-"}
                       </span>
                       <h4 className="font-bold text-sm text-slate-900 mb-2 line-clamp-2 leading-snug group-hover:text-[#10b981] transition-colors">
@@ -485,10 +485,9 @@ export default function LandingPage() {
               <div
                 key={index}
                 className={`w-full rounded-2xl overflow-hidden border transition-all duration-300 transform hover:-translate-y-0.5
-                  ${
-                    isOpen
-                      ? "bg-emerald-50/40 border-emerald-300/70 shadow-[0_15px_30px_-10px_rgba(16,185,129,0.15)]"
-                      : "bg-white border-emerald-100 shadow-sm shadow-emerald-950/5 hover:border-emerald-300 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.2)]"
+                  ${isOpen
+                    ? "bg-emerald-50/40 border-emerald-300/70 shadow-[0_15px_30px_-10px_rgba(16,185,129,0.15)]"
+                    : "bg-white border-emerald-100 shadow-sm shadow-emerald-950/5 hover:border-emerald-300 hover:shadow-[0_10px_30px_-10px_rgba(16,185,129,0.2)]"
                   }`}
               >
                 <button

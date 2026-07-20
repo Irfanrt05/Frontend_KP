@@ -22,7 +22,7 @@ export default function UserFavorites() {
       );
       setFavorites(data);
     } catch (err) {
-      setError("Gagal memuat data. Periksa koneksi Anda.");
+      setError("Gagal memuat data. Periksa koneksi Anda.",err);
     } finally {
       setLoading(false);
     }

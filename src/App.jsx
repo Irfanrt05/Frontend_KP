@@ -7,6 +7,8 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // User
 import UserLayout from "./layouts/UserLayout";
@@ -20,6 +22,7 @@ import UserRecipes from "./pages/user/UserRecipes";
 import UserRecipeDetail from "./pages/user/UserRecipeDetail";
 import UserActivityLogs from "./pages/user/UserActivityLogs";
 import UserFavorites from "./pages/user/UserFavorites";
+
 
 // Admin
 import AdminLayout from "./layouts/AdminLayout";
@@ -42,8 +45,11 @@ function App() {
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/blog/:id" element={<ArticleDetail />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
 
         {/* User */}
+        {/* <Route element={<ProtectedRoute />}> */}
         <Route path="/dashboard" element={<UserLayout />}>
           <Route index element={<UserDashboard />} />
           <Route path="health-profile" element={<HealthProfile />} />
@@ -55,10 +61,13 @@ function App() {
           <Route path="recipes/:id" element={<UserRecipeDetail />} />
           <Route path="favorites" element={<UserFavorites />} />
           <Route path="activity-logs" element={<UserActivityLogs />} />
+          {/* </Route> */}
         </Route>
 
         {/* Admin */}
+        {/* <Route element={<ProtectedRoute adminOnly />}> */}
         <Route path="/admin" element={<AdminLayout />}>
+
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="blogs" element={<Blogs />} />
