@@ -1,20 +1,54 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/admin/Sidebar";
 import Header from "../components/admin/Header";
+import { useState } from "react";
 
 export default function AdminLayout() {
+  // collapsed: sidebar icon-only di desktop (lg+)
+  const [collapsed, setCollapsed] = useState(true);
+  // mobileOpen: sidebar overlay tampil di HP/tablet (< lg)
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <div className="admin-layout flex h-screen w-full bg-[#f8fafc] overflow-hidden">
-      {/* Sidebar - Tidak akan ikut scroll karena berada di luar <main> */}
-      <Sidebar />
+    <div className="user-layout min-h-screen bg-[#f4f4f4]">
+      {/* OVERLAY untuk mobile */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
-      {/* Content Area - Wadah utama */}
-      <div className="admin-layout__content flex-1 flex flex-col h-screen overflow-hidden">
-        {/* Header - Menempel di atas */}
-        <Header />
+      {/* SIDEBAR — fixed, overlay di mobile; always visible di desktop */}
+      <Sidebar
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        mobileOpen={mobileOpen}
+        setMobileOpen={setMobileOpen}
+      />
 
-        {/* Main Content - Area yang bisa scroll */}
-        <main className="admin-layout__main flex-1 overflow-y-auto p-8">
+      {/*
+        KONTEN UTAMA
+        Sidebar bersifat "fixed", sehingga kita perlu offset (margin/padding kiri)
+        agar konten tidak tertimpa sidebar di desktop.
+
+        Di mobile (< lg): tidak ada offset — sidebar overlay
+        Di desktop (lg+): offset sesuai lebar sidebar
+          - collapsed = true  → sidebar 90px  → pl-[90px]
+          - collapsed = false → sidebar 240px → pl-[240px]
+      */}
+      <div
+        className={[
+          "user-layout__content min-h-screen flex flex-col transition-all duration-300",
+          // Offset hanya di desktop (lg+):
+          collapsed
+            ? "lg:ml-[90px]"
+            : "lg:ml-[240px]",
+        ].join(" ")}
+      >
+        <Header onMenuToggle={() => setMobileOpen((prev) => !prev)} />
+        <main className="user-layout__main px-4 sm:px-9 pb-10 flex-1">
           <Outlet />
         </main>
       </div>

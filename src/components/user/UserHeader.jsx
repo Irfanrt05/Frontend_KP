@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { Bell, Search, User } from "lucide-react";
+import { Bell, Search, User, Menu } from "lucide-react";
 import api from "../../services/api";
 import {
   getDisplayName,
@@ -9,7 +9,7 @@ import {
   saveStoredUser,
 } from "../../utils/userStorage";
 
-export default function UserHeader() {
+export default function UserHeader({ onMenuToggle }) {
   const [user, setUser] = useState(() => getStoredUser());
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -44,8 +44,18 @@ export default function UserHeader() {
       : "Cari data...";
 
   return (
-    <header className="user-header sticky top-0 z-40 px-8 py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-      <div className="user-header__inner max-w-[1600px] mx-auto flex items-center justify-between gap-8">
+    <header className="user-header sticky top-0 z-40 px-4 sm:px-8 py-4 sm:py-6 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+      <div className="user-header__inner max-w-[1600px] mx-auto flex items-center justify-between gap-4 sm:gap-8">
+
+        {/* Hamburger — hanya di mobile */}
+        <button
+          onClick={onMenuToggle}
+          className="lg:hidden p-2 rounded-xl hover:bg-slate-100 transition text-slate-600 flex-shrink-0"
+          aria-label="Buka menu"
+        >
+          <Menu size={22} />
+        </button>
+
         {/* Profile Greeting */}
         <div className="user-header__greeting hidden lg:block">
           <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest">
@@ -66,17 +76,17 @@ export default function UserHeader() {
             <input
               value={keyword}
               onChange={(e) => handleSearch(e.target.value)}
-              className="w-full bg-slate-50 border border-slate-200 py-3.5 pl-12 pr-6 rounded-2xl outline-none focus:border-[#10BB89] focus:ring-4 focus:ring-[#10BB89]/10 transition-all text-sm font-medium"
+              className="w-full bg-slate-50 border border-slate-200 py-3 sm:py-3.5 pl-12 pr-6 rounded-2xl outline-none focus:border-[#10BB89] focus:ring-4 focus:ring-[#10BB89]/10 transition-all text-sm font-medium"
               placeholder={searchPlaceholder}
             />
           </div>
         </div>
 
         {/* Navigation & User */}
-        <div className="user-header__actions flex items-center gap-6">
+        <div className="user-header__actions flex items-center gap-3 sm:gap-6">
           <Link
             to="/"
-            className="text-sm font-bold text-slate-400 hover:text-[#10BB89] transition-colors"
+            className="hidden sm:block text-sm font-bold text-slate-400 hover:text-[#10BB89] transition-colors"
           >
             About
           </Link>
@@ -90,7 +100,7 @@ export default function UserHeader() {
             to="/dashboard/profile"
             className="flex items-center gap-3 group"
           >
-            <div className="w-12 h-12 rounded-2xl overflow-hidden border-2 border-slate-100 group-hover:border-[#10BB89] transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl overflow-hidden border-2 border-slate-100 group-hover:border-[#10BB89] transition-all">
               <img
                 src={getUserAvatar(user)}
                 alt="User"

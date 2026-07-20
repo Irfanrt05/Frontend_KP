@@ -59,6 +59,7 @@ export default function HealthProfile() {
       const res = await getHealthProfiles();
       setProfiles(res.data.data || []);
     } catch (error) {
+      console.error("Error fetching profiles:", error);
       setMessage("Gagal memuat data profile");
       setMessageType("error");
     } finally {
@@ -71,7 +72,15 @@ export default function HealthProfile() {
   }, []);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Cegah nilai negatif dan di luar batas untuk field numerik
+    if (["age", "weight", "height", "budget_limit"].includes(name)) {
+      const num = Number(value);
+      if (value !== "" && num < 0) return; // abaikan input negatif
+    }
+
+    setForm({ ...form, [name]: value });
   };
 
   const resetForm = () => {
@@ -82,11 +91,28 @@ export default function HealthProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
+
+    const numAge = form.age ? Number(form.age) : null;
+    const numWeight = Number(form.weight);
+    const numHeight = Number(form.height);
+
+    // Validasi usia minimum 13 tahun di frontend
+    if (!numAge || numAge < 13) {
+      setMessage("Usia harus diisi dan minimal 13 tahun.");
+      setMessageType("error");
+      return;
+    }
+    if (numAge > 100) {
+      setMessage("Usia maksimal 100 tahun.");
+      setMessageType("error");
+      return;
+    }
+
     const payload = {
-      age: form.age ? Number(form.age) : null,
+      age: numAge,
       gender: form.gender,
-      weight: Number(form.weight),
-      height: Number(form.height),
+      weight: numWeight,
+      height: numHeight,
       activity_level: form.activity_level,
       goal_type: form.goal_type,
       budget_limit: form.budget_limit ? Number(form.budget_limit) : null,
@@ -111,6 +137,7 @@ export default function HealthProfile() {
       resetForm();
       fetchProfiles();
     } catch (error) {
+      console.error("Error submitting form:", error);
       setMessage("Gagal memproses data");
       setMessageType("error");
     } finally {
@@ -201,7 +228,7 @@ export default function HealthProfile() {
           <div className="relative z-10 space-y-8">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-black text-slate-900">
-                {editingId ? "Edit Profile" : "Buat Baru"}
+                {editingId ? "Edit Profile" : "Isi Profil Kesehatan Anda"}
               </h2>
               {editingId && (
                 <button
@@ -216,11 +243,14 @@ export default function HealthProfile() {
 
             <div className="grid grid-cols-2 gap-5">
               <Input
-                label="Usia"
+                label="Usia min.13"
                 name="age"
                 type="number"
+                min="13"
+                max="100"
                 value={form.age}
                 onChange={handleChange}
+                placeholder="13–100"
               />
               <Select
                 label="Gender"
@@ -233,22 +263,35 @@ export default function HealthProfile() {
               </Select>
             </div>
 
+            {/* Peringatan usia jika di bawah 13 */}
+            {form.age !== "" && Number(form.age) < 13 && Number(form.age) > 0 && (
+              <p className="-mt-4 text-xs font-bold text-red-500 flex items-center gap-1.5 px-2">
+                <span>⚠</span> Usia minimal 13 tahun untuk menggunakan layanan ini.
+              </p>
+            )}
+
             <div className="grid grid-cols-2 gap-5">
               <Input
                 label="Berat (kg)"
                 name="weight"
                 type="number"
+                min="20"
+                max="300"
                 value={form.weight}
                 onChange={handleChange}
                 icon={<Scale size={18} />}
+                placeholder="20–300"
               />
               <Input
                 label="Tinggi (cm)"
                 name="height"
                 type="number"
+                min="50"
+                max="250"
                 value={form.height}
                 onChange={handleChange}
                 icon={<Ruler size={18} />}
+                placeholder="50–250"
               />
             </div>
 
@@ -282,14 +325,34 @@ export default function HealthProfile() {
               label="Budget (Rp)"
               name="budget_limit"
               type="number"
+              min="0"
               value={form.budget_limit}
               onChange={handleChange}
               icon={<Wallet size={18} />}
+              placeholder="Opsional"
             />
 
+            {/* Tampilkan pesan error/success di dalam form */}
+            {message && (
+              <div
+                className={`text-xs font-bold px-5 py-3 rounded-2xl flex items-center gap-2 ${
+                  messageType === "error"
+                    ? "bg-red-50 text-red-600 border border-red-100"
+                    : "bg-emerald-50 text-emerald-700 border border-emerald-100"
+                }`}
+              >
+                <span>{messageType === "error" ? "⚠" : "✓"}</span>
+                {message}
+              </div>
+            )}
+
             <button
-              disabled={loading}
-              className="w-full bg-slate-900 text-white py-5 rounded-[2rem] font-black text-lg transition-all hover:bg-[#10BB89] hover:shadow-xl hover:shadow-emerald-500/20 active:scale-95"
+              disabled={loading || (form.age !== "" && Number(form.age) < 13)}
+              className={`w-full py-5 rounded-[2rem] font-black text-lg transition-all active:scale-95 ${
+                form.age !== "" && Number(form.age) < 13
+                  ? "bg-slate-200 text-slate-400 cursor-not-allowed"
+                  : "bg-slate-900 text-white hover:bg-[#10BB89] hover:shadow-xl hover:shadow-emerald-500/20"
+              }`}
             >
               {loading
                 ? "Menyimpan..."
